@@ -5,7 +5,7 @@ const login = async (email, password) => {
     const response = await Axios.post('/login', { email, password })
     return response.data
   } catch (error) {
-    return { error: error.response.data }
+    return error.response.data
   }
 }
 

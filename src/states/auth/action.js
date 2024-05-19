@@ -25,12 +25,15 @@ const asyncLogin = ({ email, password }) => async (dispatch) => {
     dispatch(showLoading())
 
     const response = await AuthAPI.login(email, password)
+    if (response.status === 'failed') throw new Error(response.message)
 
-    axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
-    tokenHandler.setToken(response.data.token)
+    axios.defaults.headers.common.Authorization = `Bearer ${response.data?.token}`
+    tokenHandler.setToken(response.data?.token)
 
-    const user = await UsersAPI.me()
-    dispatch(authAction.set(user.data.user))
+    const resUser = await UsersAPI.me()
+    if (resUser.status === 'fail') throw new Error(resUser.message)
+
+    dispatch(authAction.set(resUser.user))
   } catch (error) {
     dispatch(hideLoading())
     throw error
@@ -40,16 +43,24 @@ const asyncLogin = ({ email, password }) => async (dispatch) => {
 }
 
 const asyncRegister = ({ name, email, password }) => async (dispatch) => {
-  dispatch(showLoading())
+  try {
+    dispatch(showLoading())
 
-  const response = await AuthAPI.register(name, email, password)
+    const response = await AuthAPI.register(name, email, password)
+    if (response.status === 'failed') throw new Error(response.message)
 
-  if (response.error) {
+    if (response.error) {
+      dispatch(hideLoading())
+      throw response.error
+    }
+
     dispatch(hideLoading())
-    throw response.error
+  } catch (error) {
+    dispatch(hideLoading())
+    throw error
+  } finally {
+    dispatch(hideLoading())
   }
-
-  dispatch(hideLoading())
 }
 
 const asyncLogout = () => async (dispatch) => {

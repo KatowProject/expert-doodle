@@ -18,13 +18,15 @@ export const usersActions = {
 
 function asyncGetUsers () {
   return async (dispatch) => {
-    dispatch(showLoading())
     try {
-      const users = await UsersAPI.getUsers()
+      dispatch(showLoading())
+      const response = await UsersAPI.getUsers()
+      if (response.status === 'failed') throw new Error(response.message)
 
-      dispatch(usersActions.set(users.data.users))
+      dispatch(usersActions.set(response.users))
     } catch (error) {
       dispatch(hideLoading())
+      throw error
     } finally {
       dispatch(hideLoading())
     }

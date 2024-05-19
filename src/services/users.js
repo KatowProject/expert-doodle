@@ -4,9 +4,9 @@ import Axios from './tools'
 const getUsers = async () => {
   try {
     const response = await Axios.get('users')
-    return response.data
+    return response.data.data
   } catch (error) {
-    return { error: error.response.data }
+    return error.response.data
   }
 }
 
@@ -15,7 +15,7 @@ const getUser = async (userId) => {
     const response = await Axios.get(`users/${userId}`)
     return response.data
   } catch (error) {
-    return { error: error.response.data }
+    return error.response.data
   }
 }
 
@@ -29,7 +29,7 @@ const me = async () => {
     const response = await Axios.get('users/me', { headers })
     return response.data
   } catch (error) {
-    return { error: error.response.data }
+    return error.response.data
   }
 }
 
