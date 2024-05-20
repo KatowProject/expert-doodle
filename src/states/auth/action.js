@@ -33,7 +33,7 @@ const asyncLogin = ({ email, password }) => async (dispatch) => {
     const resUser = await UsersAPI.me()
     if (resUser.status === 'fail') throw new Error(resUser.message)
 
-    dispatch(authAction.set(resUser.user))
+    dispatch(authAction.set(resUser.data.user))
   } catch (error) {
     dispatch(hideLoading())
     throw error

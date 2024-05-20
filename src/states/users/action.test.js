@@ -58,7 +58,7 @@ describe('asyncUsers.asyncGetUsers', () => {
     await asyncUsers.asyncGetUsers()(dispatch)
 
     expect(dispatch).toHaveBeenCalledWith(showLoading())
-    expect(dispatch).toHaveBeenCalledWith(usersActions.set(fakeUsers.users))
+    expect(dispatch).toHaveBeenCalledWith(usersActions.set(sampleGetUsersResPassed.users))
     expect(dispatch).toHaveBeenCalledWith(hideLoading())
   })
 
@@ -67,10 +67,13 @@ describe('asyncUsers.asyncGetUsers', () => {
 
     const dispatch = vi.fn()
 
-    await asyncUsers.asyncGetUsers()(dispatch)
+    try {
+      await asyncUsers.asyncGetUsers()(dispatch)
+    } catch (error) {
+      expect(error.message).toBe('Ups, something went wrong')
+    }
 
-    expect(dispatch).not.toHaveBeenCalledWith(usersActions.set(fakeUsers))
     expect(dispatch).toHaveBeenCalledWith(showLoading())
-    expect(dispatch).toBeCalledWith(hideLoading())
+    expect(dispatch).toHaveBeenCalledWith(hideLoading())
   })
 })

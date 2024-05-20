@@ -10,9 +10,11 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest --no-watch"
+    "test": "vitest --no-watch",
+    "e2e": "cypress open"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
