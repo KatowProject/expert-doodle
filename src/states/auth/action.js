@@ -3,7 +3,6 @@ import { hideLoading, showLoading } from 'react-redux-loading-bar'
 import AuthAPI from '../../services/auth'
 import UsersAPI from '../../services/users'
 import { tokenHandler } from '../../utils/tokenHandler'
-import axios from '../../services/tools'
 
 export const AuthActionType = {
   SET_USER: 'auth/set',
@@ -27,13 +26,12 @@ const asyncLogin = ({ email, password }) => async (dispatch) => {
     const response = await AuthAPI.login(email, password)
     if (response.status === 'failed') throw new Error(response.message)
 
-    axios.defaults.headers.common.Authorization = `Bearer ${response.data?.token}`
     tokenHandler.setToken(response.data?.token)
 
     const resUser = await UsersAPI.me()
     if (resUser.status === 'fail') throw new Error(resUser.message)
 
-    dispatch(authAction.set(resUser.data.user))
+    dispatch(authAction.set(resUser.user))
   } catch (error) {
     dispatch(hideLoading())
     throw error

@@ -21,7 +21,7 @@ export const asyncPreloadMe = () => async (dispatch) => {
     let value = null
     if (tokenHandler.hasToken()) {
       value = await Users.me()
-      dispatch(authAction.set(value.data.user))
+      dispatch(authAction.set(value.user))
     }
 
     dispatch(preloadAction.set(true))
