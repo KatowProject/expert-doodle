@@ -61,7 +61,7 @@ export default function CreateThread () {
                                     className="form-control input-markdown"
                                     contentEditable
                                     data-placeholder="Write your description here..."
-                                    onChange={onContentChange}
+                                    onInput={onContentChange}
                                     suppressContentEditableWarning={true}
                                     aria-label='Content'
                                 >
