@@ -8,7 +8,7 @@ export default function App () {
   const isPreload = useSelector((state) => state.preload)
   const dispatch = useDispatch()
   const hasPreloaded = useRef(false)
-d
+
   useEffect(() => {
     if (!hasPreloaded.current) {
       dispatch(asyncPreloadMe())

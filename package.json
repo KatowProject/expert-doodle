@@ -11,7 +11,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest --no-watch",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://0.0.0.0:5173 e2e"
+
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
