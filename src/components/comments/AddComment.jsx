@@ -37,7 +37,7 @@ export default function AddComment ({ auth, onSubmit }) {
                                             className="form-control input-markdown"
                                             contentEditable
                                             data-placeholder="Write your description here..."
-                                            onInput={onContentChange}
+                                            onChange={onContentChange}
                                             suppressContentEditableWarning={true}
                                             aria-label="Content"
                                         >
