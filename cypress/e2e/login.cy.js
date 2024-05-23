@@ -9,7 +9,6 @@
  *   - should move to homepage while login success
  *   - should move to login page if logout success
  */
-import { faker } from '@faker-js/faker'
 
 describe('Login spec', () => {
   beforeEach(() => {
