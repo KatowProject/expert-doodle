@@ -44,28 +44,31 @@ export default function CreateThread () {
                     <Card.Body>
                         <Form onSubmit={onSubmit}>
                             <Form.Group className="mb-3">
-                                <Form.Label>Title</Form.Label>
-                                <Form.Control type="text" value={title} onInput={onTitleChange} />
+                                <Form.Label htmlFor='title'>Title</Form.Label>
+                                <Form.Control id='title' type="text" value={title} onChange={onTitleChange} placeholder='Title'/>
                             </Form.Group>
 
                             <Form.Group className="mb-3">
-                                <Form.Label>Category</Form.Label>
-                                <Form.Control type="text" value={category} onInput={onCategoryChange} />
+                                <Form.Label htmlFor='category'>Category</Form.Label>
+                                <Form.Control id='category' type="text" value={category} onChange={onCategoryChange} placeholder='Category' />
                             </Form.Group>
 
                             <Form.Group className="mb-3">
-                                <Form.Label>Content</Form.Label>
-                                <div
+                                <Form.Label htmlFor='content'>Content</Form.Label>
+                              <div
+                                    data-testid='content'
+                                    id='content'
                                     className="form-control input-markdown"
                                     contentEditable
                                     data-placeholder="Write your description here..."
-                                    onInput={onContentChange}
+                                    onChange={onContentChange}
                                     suppressContentEditableWarning={true}
+                                    aria-label='Content'
                                 >
                                 </div>
                             </Form.Group>
 
-                            <Button variant="primary" type="submit" className="w-100">
+                            <Button variant="primary" type="submit" className="w-100" role="button">
                                 Submit
                             </Button>
                         </Form>

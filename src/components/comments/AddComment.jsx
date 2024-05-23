@@ -31,12 +31,15 @@ export default function AddComment ({ auth, onSubmit }) {
                                         <strong>{auth.name}</strong>
                                     </div>
                                     <div>
-                                        <div
+                                      <div
+                                            data-testid="content"
+                                            id='content'
                                             className="form-control input-markdown"
                                             contentEditable
                                             data-placeholder="Write your description here..."
                                             onInput={onContentChange}
                                             suppressContentEditableWarning={true}
+                                            aria-label="Content"
                                         >
                                         </div>
                                     </div>

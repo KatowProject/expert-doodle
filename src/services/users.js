@@ -4,7 +4,7 @@ import Axios from './tools'
 const getUsers = async () => {
   try {
     const response = await Axios.get('users')
-    return response.data.data
+    return response.data?.data
   } catch (error) {
     return error.response.data
   }
@@ -27,7 +27,7 @@ const me = async () => {
 
   try {
     const response = await Axios.get('users/me', { headers })
-    return response.data
+    return response.data.data
   } catch (error) {
     return error.response.data
   }
